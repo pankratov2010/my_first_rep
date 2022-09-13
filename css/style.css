@@ -1,9 +1,22 @@
 body {
-    margin: 0;
-    font-family: "Tahoma", sans-serif;
-    background-color: #c3c3c3;
+  margin: 0;
+  font-family: "Tahoma", sans-serif;
+  background-color: #c3c3c3;
 }
 
-h1, h2, h3, p {
-    margin: 0;
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
+
+.services-item {
+  background-color: #fff;
+  width: 350px;
+  height: 346px;
+  padding: 40px 32px;
+  border-radius: 12px;
+  margin: 0 24px 24px 24px;
+}
+
