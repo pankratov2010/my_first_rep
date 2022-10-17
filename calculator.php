@@ -1,24 +1,19 @@
 <?php
 
-function addition(int|float $arg1, int|float $arg2)
-	{
-	$resalt = $arg1 + $arg2;
-	return ($resalt);
+function addition(int|float $arg1, int|float $arg2){
+	return ($resalt = $arg1 + $arg2);
 	}
 
 function subtraction(int|float $arg1, int|float $arg2){
-	$resalt = $arg1 - $arg2;
-	return ($resalt);
+	return ($resalt = $arg1 - $arg2);
 }
 
 function division(int|float $arg1, int|float $arg2){
-	$resalt = $arg1 / $arg2;
-	return ($resalt);
+	return ($resalt = $arg1 / $arg2);
 }
 
 function multiplication(int|float $arg1, int|float $arg2){
-	$resalt = $arg1 * $arg2;
-	return ($resalt);
+	return ($resalt = $arg1 * $arg2);
 }
 
 function mathOperation(int|float $arg1, int|float $arg2, string $operation){
@@ -36,6 +31,7 @@ function mathOperation(int|float $arg1, int|float $arg2, string $operation){
         return(division($arg1, $arg2));
         break;
 	}
+	
 }
   
 { 
