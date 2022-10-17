@@ -1,44 +1,46 @@
 <?php
 
-function addition(int|float $arg1, int|float $arg2){
+function addition(int|float $arg1, int|float $arg2)
+	{
 	$resalt = $arg1 + $arg2;
-	echo $resalt;
-}
+	return ($resalt);
+	}
 
 function subtraction(int|float $arg1, int|float $arg2){
 	$resalt = $arg1 - $arg2;
-	echo $resalt;
+	return ($resalt);
 }
 
 function division(int|float $arg1, int|float $arg2){
 	$resalt = $arg1 / $arg2;
-	echo $resalt;
+	return ($resalt);
 }
 
 function multiplication(int|float $arg1, int|float $arg2){
 	$resalt = $arg1 * $arg2;
-	echo $resalt;
+	return ($resalt);
 }
 
 function mathOperation(int|float $arg1, int|float $arg2, string $operation){
-	
     switch ($operation) {
     case '+':
-        addition($arg1, $arg2);
+        return(addition($arg1, $arg2));
         break;
     case '-':
-        subtraction($arg1, $arg2);
+        return(subtraction($arg1, $arg2));
         break;
     case '*':
-        multiplication($arg1, $arg2);
+        return(multiplication($arg1, $arg2));
         break;
     case '/':
-        division($arg1, $arg2);
+        return(division($arg1, $arg2));
         break;
+	}
 }
-    
-   
-}
-mathOperation(1, 4, '*')
+  
+{ 
 
+echo (mathOperation(12, 2, '/'));
+
+}
 ?>
