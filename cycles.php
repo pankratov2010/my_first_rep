@@ -15,6 +15,9 @@ return ($array);
 }
 
 var_dump (divisionNumbersInBetween (0, 100, 3));
+
+echo '<br/>';
+
 echo '<br/>';
 
 function evenNotEvenNumbers (){
@@ -36,7 +39,15 @@ function evenNotEvenNumbers (){
 
 }
 
-evenNotEvenNumbers ()
+evenNotEvenNumbers ();
+
+echo '<br/>';
+
+echo '<br/>';
+
+for ($i=0; $i <= 9; print($i++)) {
+
+}
 
 
 ?>
