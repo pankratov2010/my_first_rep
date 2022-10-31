@@ -15,27 +15,33 @@ function upload_file($file) {
   }
 
   //Проверяем расширения изображений, их размер и процесс копирования из временной директории
-  $arr = explode(".", $file['name']);
-  $ext = mb_strtolower($arr[count($arr)-1]);
-  $allowed = array('jpg', 'jpeg', 'png', 'gif');
+  $arr = explode(".", $file['name']);                                //разбиваем название по разделителю
+  $ext = mb_strtolower($arr[count($arr)-1]);                         //переводим в нижний регистр формат файла
+  $allowed = array('jpg', 'jpeg', 'png', 'gif');                     //массив разрешенных форматов файла
 
-  $img_name = htmlspecialchars(trim($file['name']));
+  $img_name = htmlspecialchars(trim($file['name']));                 //удаление пробелов и представление спец символов в виды html сущностей
   $thumb_name = 'thumb_' . $img_name;
 
-  if (in_array($ext, $allowed)) {
-    if ($file['size'] <= GW_MAXFILESIZE) {
-      if (copy($file['tmp_name'], 'thumbs/' . $thumb_name)){
-        if (copy($file['tmp_name'], 'img/'.$img_name)){
-          echo 'Файл успешно загружен';
-          img_resize('img/' . $img_name, 'thumbs/' . $thumb_name, '250', '150');
-        } else { echo 'Ошибка загрузки файла'; return;}
-    } else {
-      echo "Файл не должен превышать размер в 5 Мб!"; return; }
-  } else {
+  if (!in_array($ext, $allowed)) {                                   //проверка соответствия формата файла
     echo "Файл должен иметь одно из известных расширений графических изображений (gif, jpeg или png)!";
+  return;
+  }
+
+  if ($file['size'] > GW_MAXFILESIZE) {                             //проверка размера файла
+    echo "Файл не должен превышать размер в 5 Мб!";
     return;
   }
-}
+
+  if (copy($file['tmp_name'], 'thumbs/' . $thumb_name)){
+    if (copy($file['tmp_name'], 'img/'.$img_name)){
+      echo 'Файл успешно загружен';
+      img_resize('img/' . $img_name, 'thumbs/' . $thumb_name, '250', '150');
+    }
+    else{
+    echo 'Ошибка загрузки файла';
+    return;
+    }
+  }
 }
 
 
@@ -51,8 +57,8 @@ function upload_file($file) {
      $quality         - качество генерируемого JPEG, по умолчанию - максимальное (100)
    ***********************************************************************************/
 
-  function img_resize($src, $dest, $width, $height, $rgb = 0xFFFFFF, $quality = 100)
-    {
+  function img_resize($src, $dest, $width, $height, $rgb = 0xFFFFFF, $quality = 100){
+
       if (!file_exists($src)) return false;
 
       $size = getimagesize($src);
@@ -91,6 +97,6 @@ function upload_file($file) {
 
       return true;
 
-    }
+  }
 
 ?>
