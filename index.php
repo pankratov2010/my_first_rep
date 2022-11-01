@@ -26,24 +26,28 @@ require_once 'functions.php';
 
         $current_page = mb_substr($_SERVER['REQUEST_URI'], 0, 29);
 
-        $allowed = array('.jpg', 'jpeg', '.png', '.gif');
+
 
         //Вывод миниатюр на экран
         $handle = opendir('thumbs');
+
+        $allowed = array('.jpg', 'jpeg', '.png', '.gif');
 
         if ($handle != false) {
             echo "<h1>Галерея:</h1><br>";
 
             while (false !== ($file = readdir($handle))) {
+
                 $a = mb_substr($file, -4);
-                echo $a;
 
 
-                if ($file != '.' && $file != '..' && $file != '.DS_Store') {
+                if (in_array($a, $allowed) && $file != '.' && $file != '..' && $file != '.DS_Store'){
                     $full_size = mb_substr($file, 6);
                     echo "<a href=img/$full_size target=\"_blank\"><img src=\"thumbs/$file\" alt=\"\"></a>";
                 }
+
             }
+
             echo "</div>";
             closedir($handle);
         }
@@ -52,5 +56,4 @@ require_once 'functions.php';
 
     </div>
 
-	</body>
-
+    </body>
